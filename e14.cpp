@@ -1,6 +1,11 @@
-//Tính S(n) = 𝑥^1 + 𝑥^2 + 𝑥^3 + ⋯ + 𝑥^𝑛 .
-// 1 + 1^2 + 1^3 = 3
-// 3 + 3^2 + 3^3 = 39
+/*
+Tính S(n) = 𝑥^1 + 𝑥^3 + 𝑥^5 + ⋯ + 𝑥^2n+1
+x = 3
+n = 3
+2 * 3 + 1 = 7
+
+3^1 + 3^3 + 3^5 = 273
+*/
 #include<iostream>
 #include<cmath>
 using namespace std;
@@ -13,9 +18,8 @@ int main(){
     cout << "Nhap n: "; 
     cin >> n;
     
-    for(int i = 1; i <= n; i++) {
+    for(int i = 1; i < n * 2 + 1; i+=2) {
         s += pow(x, i);
     }
-
     cout << s << endl;
 }
