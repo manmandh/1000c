@@ -2,6 +2,25 @@
 #include <cmath>
 using namespace std;
 
+bool isAllOddNumber(int n){
+    while(n !=0){
+        int k = n % 10;
+        if(k%2==0){
+            return false;
+        }
+        n/=10;
+    }
+    return true;
+}
+
+bool isPerfectNumber(int n) {
+    int sum = 0;
+    for(int i = 1; i < n; i++) {
+        if(n % i == 0) sum += i;
+    }
+    return sum == n;
+}
+
 void ex131(int a[100], int n){
     for(int i=0; i<n;i++){
         cout << a[i] << " ";
@@ -589,10 +608,27 @@ void ex170(int a[], int n){
     cout << prime << endl;
 }
 
-void ex171(int a[], int n){
-    
+int gcd(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
 }
 
+int lcm(int a, int b) {
+    return (a*b)/gcd(a,b);
+}
+
+void ex171and172(int a[], int n){
+    int gcd_result = a[0];
+    int lcm_result = a[0];
+    for (int i = 1; i < n; i++) {
+        gcd_result = gcd(gcd_result, a[i]);
+        lcm_result = lcm(lcm_result, a[i]);
+    }
+    cout << "GCD = " << gcd_result << endl;
+    cout << "LCM = " << lcm_result << endl;
+}
 
 void ex173(int a[], int n){
     int digit[10] = {0};
@@ -771,32 +807,12 @@ bool isOddNumber(int n){
     return (n%2 != 0);
 }
 
-bool isCheckPrime(int n){
-    for(int i=2; i <= sqrt(n); i++){
-        if(n%i==0){
-            return false;
-        }
-    }
-    return n>1;
-}
-
 void ex189(int a[], int n){
     for(int i=0; i<n; i++){
         if(isOddNumber(a[i]) && isCheckPrime(a[i])){
             cout << a[i] << endl;
         }
     }
-}
-
-bool isAllOddNumber(int n){
-    while(n !=0){
-        int k = n % 10;
-        if(k%2==0){
-            return false;
-        }
-        n/=10;
-    }
-    return true;
 }
 
 void ex190(int a[],int n){
@@ -927,11 +943,1233 @@ void ex200(int a[], int n){
     cout << sum << " ";
 }
 
+void ex201(int a[], int n){
+    double sum = 0;
+    for(int i=0;i<n;i++){
+        if(a[i]>0){
+            sum+=a[i];
+        }
+    }
+    cout << sum << " ";
+}
+
+void ex202(int a[], int n){
+    double sum = 0;
+    for(int i=0;i<n;i++){
+        if(isOddNumber(a[i])){
+            sum+=a[i];
+        }
+    }
+    cout << sum << " ";
+}
+
+void ex203(int a[], int n){
+    int sum = 0;
+    for(int i = 0; i < n; i++) {
+        int k = (a[i]/10)%10;
+        if(k==5){
+            sum+=a[i];
+        }
+    }
+    cout << sum << endl;
+}
+
+void ex204(int a[], int n){
+    int sum = 0;
+    for(int i = 1; i < n; i++) {
+       if(a[i]>a[i-1]){
+            sum+=a[i];
+       }
+    }
+    cout << sum << endl;
+}
+
+void ex205(int a[], int n){
+    int sum = 0;
+    for(int i = 0; i < n - 1; i++){
+        if(a[i]> abs(a[i+1])){
+            sum+=a[i];
+        }
+    }
+    cout << sum << endl;
+}
+
+void ex206(int a[], int n){
+    int sum = 0;
+    for(int i = 1; i < n-1; i++) {
+       if(a[i]>a[i-1] && a[i] > a[i+1]){
+            sum+=a[i];
+       }
+    }
+    cout << sum << endl;
+}
+
+void ex207(int a[], int n){
+    int sum = 0;
+    for(int i = 1; i < n-1; i++) {
+       if(a[i] != a[i-1] && a[i] != a[i+1]){
+            sum+=a[i];
+       }
+    }
+    cout << sum << endl;
+}
+
+void ex208(int a[], int n){
+    int sum = 0;
+    for(int i = 0; i < n; i++) {
+        if(sqrt(a[i])==(int)sqrt(a[i])){
+            sum+=a[i];
+        }
+    }
+    cout << sum << endl;
+}
+
+void ex209(int a[], int n){
+    int sum = 0;
+    for(int i = 0; i < n; i++) {
+        int k = a[i];
+        int s = 0;
+        while(k){
+            s=s*10+k%10;
+            k/=10;
+        }
+        if(s==a[i]){
+            sum+=a[i];
+        }
+    }
+    cout << sum << endl;
+}
+
+void ex210(int a[], int n){
+    int sum = 0;
+    for(int i = 0; i < n; i++) {
+        if(isEvenNumber(a[i])){
+            sum +=a[i];
+        }
+    }
+    cout << sum << endl;
+}
+
+void ex211(int a[], int n){
+    int sum = 0;
+    int count = 0;
+    for(int i = 0; i < n; i++) {
+        if(isCheckPrime(a[i])){
+            sum+=a[i];
+            count++;
+        }
+    }
+    cout <<(float) sum/count << endl;
+}
+
+void ex212(int a[], int n){
+    int sum = 0;
+    int count = 0;
+    for(int i = 0; i < n; i++) {
+        if(a[i]>0){
+            sum+=a[i];
+            count++;
+        }
+    }
+    cout << (float)sum/count << endl;
+}
+
+void ex213(int a[], int n){
+    int x; cin >> x;
+    int sum = 0;
+    int count = 0;
+    for(int i = 0; i < n; i++) {
+        if(a[i]>x){
+            sum+=a[i];
+            count++;
+        }
+    }
+    cout << (float)sum/count << endl;
+}
+
+void ex214(int a[], int n){
+    long long p = 0;
+    int count = 0;
+    for(int i = 0; i < n; i++) {
+        if(a[i]>0){
+            p*=a[i];
+            count++;
+        }
+    }
+    cout << pow(p, 1.0/count) << endl;
+}
+
+void ex215(int a[], int n){
+    int sum = 0;
+    for(int i = 0; i < n-1; i++) {
+        int space2 = abs(a[i]-a[i+1]);
+        sum+=space2;
+    }
+    cout <<(double)sum/(n-1) << endl;
+}
+
+void ex216(int a[], int n){
+    int count = 0;
+    for(int i = 0; i < n; i++) {
+        if(a[i]%2==0){
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+
+void ex217(int a[], int n){
+    int count = 0;
+    for(int i = 0; i < n; i++) {
+        if(a[i]>0 && a[i]%7==0){
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+
+void ex218(int a[], int n){
+    int count = 0;
+    for(int i = 0; i < n; i++) {
+        int k = a[i];
+        int s = 0;
+        while(k){
+            s=s*10+k%10;
+            k/=10;
+        }
+        if(s==a[i])
+        count++;
+    }
+    cout << count << endl;
+}
+
+void ex219(int a[], int n){
+    int count = 0;
+    int x; cin >> x;
+    for(int i = 0; i < n; i++) {
+        if(a[i]==x){
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+
+void ex220(int a[], int n){
+    int count = 0;
+    for(int i = 0; i < n; i++) {
+        if(a[i]%10==5){
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+
+void ex221(int a[], int n){
+    int count1=0;//le
+    int count2=0;//chan
+    for(int i = 0; i < n; i++) {
+        if(a[i]%2!=0){
+            count1++;
+        }else{
+            count2++;
+        } 
+    }
+    if(count1>count2){
+        cout << "1";
+    }else if(count2>count1){
+        cout <<"-1";
+    }else{
+        cout << "0";
+    }
+}
+
+void ex222(int a[], int n){
+    int count = 0;
+    for(int i = 0; i < n; i++) {
+        if((a[i]>a[i+1] && a[i]>a[i-1])||(a[i]<a[i+1] && a[i]<a[i-1])){
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+
+
+void ex223(int a[], int n){
+    int count = 0;
+    for(int i=0; i<n; i++){
+        if(isCheckPrime(a[i])){
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+
+void ex224(int a[], int n){
+    int count = 0;
+    for(int i=0; i<n; i++){
+        if(isPerfectNumber(a[i])) ++count;
+    }
+    cout << count << endl;
+}
+
+void ex225(int a[], int n){
+    int count = 0;
+    int max = INT_MIN;
+    for(int i = 0; i < n; i++) {
+        if(a[i]>max){
+            max=a[i];
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        if(a[i]==max){
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+
+void ex225c2(int a[], int n){
+    int count = 0;
+    int maxValue = a[0];
+    for(int i = 0; i < n; i++) {
+        if(a[i] > maxValue) {
+            maxValue = a[i];
+            count = 0;
+        }
+        if(a[i] == maxValue) ++count;
+    }
+    cout << count << endl;
+}
+
+void ex226(int a[], int n){
+    int count = 0;
+    for(int i = 0; i < n-1; i++) {
+        if(a[i]%2==0 && a[i+1]%2==0){
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+
+void ex227(int a[], int n){
+    int count = 0;
+    for(int i = 0; i < n-1; i++) {
+        if(a[i] * a[i+1]<0){
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+
+void ex228(int a[], int n){
+    int count = 0;
+    for(int i = 0; i < n-1; i++) {
+        if(a[i]*a[i+1]>0 && abs(a[i]<abs(a[i+1]))){
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+
+void ex230(int a[], int n){
+    map<int, int> cc;
+    for(int i=0; i<n; i++){
+        cc[a[i]]++;
+    }
+    for(auto x : cc){
+        //cout << x.first << endl;
+        cout << x.second << endl;
+    }
+}
+
+void ex231(int a[], int n){
+    map<int, int> cc;
+    for(int i=0; i<n; i++){
+        cc[a[i]]++;
+    }
+    for(auto x : cc){
+        //cout << x.first << endl;
+        if(x.second==1){
+            cout << x.first << endl;
+        }
+    }
+}
+
+
+void ex232(int b[], int n){
+    map<int, int> cc;
+    for(int i = 0; i < n; i++) {
+        cc[b[i]]++;
+    }
+    for(auto x: cc){
+        if(x.second>1){
+            cout << x.first << endl;
+        }
+    }
+}
+
+void ex233(int b[], int n){
+    map<int, int> cc;
+    for(int i=0; i<n; i++){
+        cc[b[i]]++;
+    }
+    for(auto x : cc){
+        cout <<"Value: " << x.first << endl;
+        cout <<"Appear: " << x.second << endl;
+    }
+}
 
 
 
+void ex238(int b[], int n){
+    map<int, int> cc;
+    for (int i = 0; i < n; i++){
+        cc[b[i]]++;
+    }
+    int max = 0, res;
+    for (auto it : cc){
+        if (max < it.second){
+            max = it.second;
+            res = it.first;
+        }
+    }
+    cout << res << endl;
+    cout << max << endl;
+}
+
+
+void ex239(int a[], int n){
+    map<int, int> cc;
+    int count = 0;
+    for(int i = 0; i < n; i++){
+        if(isCheckPrime(a[i])){
+            if(cc.find(a[i]) == cc.end()){
+                cc[a[i]] = 1;
+            }else{
+                cc[a[i]]++;
+            }
+        }
+    }
+    for(auto x : cc) {
+        if(x.second == 1){
+            count++;
+        }
+    }  
+    cout << count;
+}
+
+void ex240(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        if(a[i] == 0) {
+            cout << "1" << endl;
+            return;
+        }
+    }
+    cout << "0" << endl;
+}
+
+void ex241(int a[], int n){
+    for(int i = 0; i < n-1; i++) {
+        if(a[i]==0 && a[i+1]==0){
+            cout << "1" << endl;
+            return;
+        }
+    }
+    cout << "0" << endl;
+}
+
+void ex242(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        if(a[i]%2==0){
+            cout << "1" << endl;
+            return;
+        }
+    }
+    cout << "0" <<endl;
+}
+
+void ex243(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        if(isCheckPrime(a[i])){
+            cout << "1" <<endl;
+            return;
+        }
+    }
+    cout << "0" << endl;
+}
+
+void ex244(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        if(isPerfectNumber(a[i])&& a[i]>256){
+            cout << "0" << endl;
+            return;
+        }
+    }
+    cout << "1" << endl;
+}
+
+void ex245(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        if(a[i]%2!=0){
+            cout << "0" <<endl;
+            return;
+        }
+    }
+    cout << "1" << endl;
+}
+void ex246(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        if(a[i]!=a[n-i-1]){
+            cout << "0" << endl;
+            return;
+        }
+    }
+    cout << "1" <<endl;
+}
+
+void ex247(int a[], int n){
+    for(int i = 0; i < n-1; i++) {
+        if((a[i]+a[i+1])%2==0){
+            cout << "0" << endl;
+            return;
+        }
+    }
+    cout << "1" <<endl;
+}
+
+void ex248(int a[], int n){
+    for(int i = 0; i < n-1; i++) {
+        if(a[i]>=a[i+1]){
+            cout << "0" << endl;
+            return;
+        }
+    }
+    cout << "1" <<endl;
+}
+
+void ex249(int a[], int n){
+    for(int i = 0; i < n-1; i++) {
+        if(a[i]<=a[i+1]){
+            cout << "0" <<endl;
+            return;
+        }
+    }
+    cout << "1" <<endl;
+}
+
+void ex250(int a[], int n){
+    int d = a[1] - a[0];
+    for(int i = 0; i < n-1; i++) {
+        if((a[i+1]-a[i])!=d){
+            cout << "0" << endl;
+            return;
+        }
+    }
+    cout << "1" << endl;
+}
+
+void ex251(int a[], int n){
+    for(int i = 0; i < n-1; i++) {
+        if(a[i]!=a[i+1]){
+            cout << "0" << endl;
+            return;
+        }
+    }
+    cout << "1" << endl;
+}
+
+void ex252(int a[], int n){
+    for(int i = 1; i < n-1; i++) {
+        if(a[i]==a[i+1] && a[i]==a[i-1]){
+            cout << "0" << endl;
+            return;
+        }
+    }
+    cout << "1" << endl;
+}
+
+void ex253(int a[], int b[], int n, int m){
+    map<int, int> bm;
+    for(int i = 0; i < m; i++) {
+        bm[b[i]]++;
+    }
+    for(int i = 0; i < n; i++) {
+        if(bm[a[i]] == 0) {
+            cout << "0" << endl;
+            return;
+        }
+    }
+    cout << "1" << endl;
+}
+//a[1, 4, 7, 8, 9]
+//b[1, 5, 7, 10, 4, 15, 9]
+
+void ex254(int a[], int n){
+    int count = 0;
+    int max = a[0];
+    for(int i = 1; i < n ; i++) {
+        if(a[i] > max) {
+            ++count;
+            max = a[i];
+        }
+    }
+    cout << count << endl;
+}
+
+void ex255(int a[], int n){
+    for(int i = 0; i < n-1; i++) {
+        for(int j=i+1; j<n; j++){
+            if(a[i]>a[j]){
+                swap(a[i], a[j]);
+            }
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex256(int a[], int n){
+    for(int i = 0; i < n-1; i++) {
+        for(int j=i+1; j<n; j++){
+            if(a[i]<a[j]){
+                swap(a[i], a[j]);
+            }
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex257(int a[], int n){
+    for(int i=1; i<n-1; i+=2){
+        for(int j=i+2; j<n; j+=2){
+            if(a[i]>a[j]){
+                swap(a[i], a[j]);
+            }
+        }
+    }
+}
+
+
+void ex258(int a[], int n){
+    for(int i = 0; i < n - 1; i++){
+        if(isCheckPrime(a[i])){
+            for(int j = i + 1; j < n; j++){
+                if(isCheckPrime(a[j])){
+                    if(a[i]>a[j]){
+                        swap(a[i], a[j]);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void ex259(int a[], int n){
+    for(int i = 0; i < n-1; i++) {
+        if(isPerfectNumber(a[i])){
+            for(int j=i+1; j<n; j++){
+                if(isPerfectNumber(a[j])){
+                    if(a[i]<a[j]){
+                        swap(a[i], a[j]);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void ex261(int a[], int n){
+    for(int i = 0; i < n-1; i++) {
+        if(a[i]>0){
+            for(int j=i+1; j<n; j++){
+                if(a[j]>0){
+                    if(a[i]>a[j]){
+                        swap(a[i], a[j]);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void ex263(int a[], int n){
+    for(int i = 0; i < n-1; i++) {
+        if(a[i]>0){
+            for(int j=i+1; j<n; j++){
+                if(a[j]>0){
+                    if(a[i]>a[j]){
+                        swap(a[i], a[j]);
+                    }
+                }
+            }
+        }else{
+            for(int j=i+1;j<n;j++){
+                if(a[j]<0){
+                    if(a[i]<a[j]){
+                        swap(a[i], a[j]);
+                    }
+                }
+            }
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex264(int a[], int b[], int n, int m){
+    int mix[n + m];
+    int indexArray = 0;
+    int i = 0, j = 0;
+    while(i < n && j < m) {
+        if(a[i] < b[j]) {
+            mix[indexArray++] = a[i++];
+        }
+        else {
+            mix[indexArray++] = b[j++];
+        }
+    }
+    if(i == n) {
+        while(j < m) {
+            mix[indexArray++] = b[j++];
+        }
+    }
+    else if(j == m) {
+        while(i < n) {
+            mix[indexArray++] = a[i++];
+        }
+    }
+    for(int i = 0; i < indexArray; i++) {
+        cout << mix[i] << " ";
+    }
+}
+
+void ex265(int a[], int b[], int n, int m){
+    int mix[n + m];
+    int indexArray = 0;
+    int i = n - 1, j = m - 1;
+    while(i >= 0 && j >= 0) {
+        if(a[i] > b[j]) {
+            //cout << a[i] << endl;
+            mix[indexArray++] = a[i--];
+        }
+        else {
+            //cout << b[j] << endl;
+            mix[indexArray++] = b[j--];
+        }
+    }
+    // cout << i << "-" << j << endl;
+    for(int i = 0; i < indexArray; i++) {
+        cout << mix[i] << " ";
+    }
+    if(i == 0) {
+        while(j >= 0) {
+            mix[indexArray++] = b[j--];
+        }
+    }
+    else if(j == 0) {
+        while(i >= 0) {
+            mix[indexArray++] = a[i--];
+        }
+    }
+}
+
+void ex266(int a[], int n){
+    int x; cin >> x;
+    int k; cin >> k;
+    //0 1  2  3 4 a[]
+    //7 13 15 9 2  x
+    for(int i = n; i > k ; i--) {
+        a[i] = a[i-1];
+    }
+    a[k] = x;
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+    n++;
+}
+
+void ex267(int a[], int n){
+
+}
+
+void input(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+}
+
+
+void ex269(int a[], int n){
+    int x; cin >> x;
+    int i = n;
+    while(x <= a[i - 1]){
+        a[i] = a[i - 1];
+        i--;
+    }
+    a[i] = x;
+    n++;
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+
+
+void ex270(int a[], int n){
+    for(int i = 0; i < n-1; i++) {
+        for(int j=i+1; j<n; j++){
+            if(a[i]>a[j]){
+                swap(a[i], a[j]);
+            }
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex271(int a[], int n){
+    int k; cin >> k;
+    for(int i = k; i < n - 1 ; i++) {
+        a[i]=a[i+1];
+    }
+    n--;
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex272(int a[], int n){
+    int max = *max_element(a, a + n);
+    for(int i = 0; i < n; i++) {
+        if(max == a[i]) {
+            for(int j = i; j < n - 1 ; j++) {
+                a[j]=a[j+1];
+            }
+            n--;
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex273(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        if(a[i]<0){
+            for(int j = i; j < n-1 ; j++) {
+                a[j]=a[j+1];   
+            }
+            n--;
+            i--;
+        }
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex274(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        if(a[i]%2==0){
+            for(int j = i; j < n-1 ; j++) {
+                a[j]=a[j+1];   
+            }
+            n--;
+            i--;
+        }
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex275(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        if(sqrt(a[i])==(int)sqrt(a[i])){
+            for(int j = i; j < n - 1; j++){
+                a[j] = a[j+1];
+            }
+            n--;
+            i--;
+        }
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex276(int a[], int n){
+    int x; cin >> x;
+    for(int i = 0; i < n; i++) {
+        if(a[i]==x){
+            for(int j = i; j < n-1 ; j++) {
+                a[j]=a[j+1];   
+            }
+            n--;
+            i--;
+        }
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex277(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        if(isCheckPrime(a[i])){
+            for(int j = i; j < n-1 ; j++) {
+                a[j]=a[j+1];   
+            }
+            n--;
+            i--;
+        }
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex278(int a[], int n){
+    sort(a, a + n);
+    
+    for(int i = 0; i < n-1; i++) {
+        int temp = a[i+1];
+        if(a[i]==temp){
+            for(int j = i; j < n-1 ; j++) {
+                a[j]=a[j+1];   
+            }
+            n--;
+            i--;
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void output(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex279(int a[], int n){
+    sort(a, a+n);
+    // for(int i = 0; i < n - 1; i++) {
+    //     if(a[i+1]==a[i]){
+    //         int temp = a[i];
+    //         while(a[i]==temp){
+    //             for(int j = i; j < n-1; j++) {
+    //                 a[j]=a[j+1];                    
+    //             }
+    //             n--;
+    //         }
+    //         --i;
+    //     }
+    // }
+    //cout << "dat khung";
+    for (int i = 0; i < n - 1; i++) {
+        if(a[i + 1] == a[i]) {
+            int temp = a[i];
+            while(a[i] == temp) {
+                for(int j = i; j < n - 1; j++) {
+                    a[j] = a[j + 1];
+                }
+                n--;
+            }
+            --i;
+        }
+    }
+    output(a, n);
+}
+
+void ex280(int a[], int n){
+    int x; cin >> x;
+    for(int i = 0; i < n; i++) {
+        if(a[i]==x){
+            swap(a[i], a[0]);
+        }
+    }
+    output(a, n);
+}
+
+void ex281(int a[], int n){
+    int left = 0;
+    int right = n - 1;
+    int mid = (left + right) / 2;
+    while(left <= right){
+        while(!(a[left]%2)){
+            if(a[left]==0){
+                swap(a[left], a[mid]);
+                left--;
+            }
+            left++;
+        }
+        while(a[right]%2){
+            if(a[right]==0){
+                swap(a[right], a[mid]);
+                right++;
+            }
+            right--;
+        }
+        if(left <= right){
+            swap(a[left], a[right]);
+        }
+        left++;
+        right--;
+    }
+    output(a, n);
+}
+
+void ex282(int a[], int n){
+    int left = 0;
+    int right = n - 1;
+    while(left <= right){
+        if(a[left] % 3) {
+            while(a[right]%3){
+                right--;
+            }
+            if(left <= right){
+                swap(a[left], a[right]);
+            }
+        }
+        else {
+            ++right;
+        }
+        left++;
+        right--;
+    }
+    output(a, n);
+}
+
+void ex283(int a[], int n){
+    for(int i = 0; i < n / 2; i++) {
+        int temp = a[i];
+        a[i] = a[n-i-1];
+        a[n-i-1] = temp;
+    }
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex284(int a[], int n){
+    int left = 0;
+    int right = n - 1;
+    while(left<=right){
+        while(a[left]%2){
+            left++;
+        }
+        while(a[right]%2){
+            right--;
+        }
+        if(left < right){
+            swap(a[left], a[right]);
+        }
+        left++;
+        right--;
+    }
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex285(int a[], int n){
+    int left = 0;
+    int right = n - 1;
+    while(left <= right){
+        while(a[left]<=0){
+            left++;
+        }
+        while(a[right]<=0){
+            right--;
+        }
+        if(left < right){
+            swap(a[left],a[right]);
+        }
+        left++;
+        right--;
+    }
+}
+void ex286(int a[], int n){
+    int tmp = a[0];
+    for(int i = 0; i < n; i++) {
+        a[i]=a[i+1];
+    }
+    a[n-1]=tmp;
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+} 
+
+void ex287(int a[], int n){
+    int k;
+    while(k){
+        int temp = a[n-1];
+        for(int i = n-1; i > 0; i--) {
+            a[i]=a[i-1];
+        } 
+        a[0] = temp; 
+    }
+    output(a, n);
+}
+
+void ex288(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        if(a[i]%2==0){
+            cout << "Yellow" << endl;
+        }else{
+            cout << "White" << endl;
+        }
+    }
+    output(a, n);
+}
+
+
+void ex289(int a[], int n){
+    string odd = "";
+    string even = "";
+    for(int i=0; i<n; i++){
+        if(a[i]%2){
+            odd += " " + to_string(a[i]);
+        }else{
+            even += " " + to_string(a[i]);
+        }
+    }
+    cout << odd << endl;
+    cout << even << endl;
+}
+
+void ex290(int a[], int n){
+    int left = 0;
+    int right = n - 1;
+    while(left <= right){
+        while(a[left]%2){
+            left++;
+        }
+        while(a[right]%2){
+            right--;
+        }
+        if(left<right){
+            swap(a[left], a[right]);
+        }
+        right--;
+        left++;
+    }
+}
+
+void ex291(int a[], int n){
+    
+}
+
+void ex307(int a[], int b[], int n){
+    int index = 0;
+    for(int i = 0; i < n; i++) {
+        if(a[i]%2!=0){
+            b[index++] = a[i];
+        }
+    }
+    for(int i = 0; i < index; i++) {
+        cout << b[i] << " ";
+    }
+}
+
+void ex308(int a[], int b[], int n){
+    int index = 0;
+    for(int i = 0; i < n; i++) {
+        if(a[i]<0){
+            b[index] = a[i];
+            index++;
+        }
+    }
+    for(int i = 0; i < index; i++) {
+        cout << b[i] << " ";
+    }
+}
+
+
+void ex309(int a[], int b[], int n){
+    int index = 0;
+    for(int i = 0; i < n; i++) {
+        if(i==0){
+            b[index]=a[i+1];
+            index++;
+        }else if(i==n-1){
+            b[index]=a[i-1];
+            index++;
+        }else{
+            b[index]=a[i-1]+a[i+1];
+            index++;
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        cout << b[i] << " ";
+    }
+}
+
+void ex310(int a[], int b[], int n){
+    int index = 0;
+    for(int i = 0; i < n; i++) {
+        if(isCheckPrime(a[i])){
+            b[index] = a[i];
+            index++;
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        cout << b[i] << " ";
+    }
+}
+
+
+
+
+//229 260 268 -- bo
+//279- bi ngao
 int main() {
     int a[] = {-8,-1,-2, 8128, 10, 1, 2, 3, 4, 5, 15, 6, 9};
+    int b[] = {12, 43, 12, 34, 43, 12, 5};
+    int c[] = {1, 5, 13, 9, 13, 9, 13};
+    int d[] = {1, 3, 5, 7, 9, 6, 13};
+    int e[] = {2, 4, 6, 8, 10, 25};
+    int f[] = {14, 7, -1, -8, 2};
+    //ex284(e, 6);
+    //ex283(b, 7);
+    //ex282(d, 7);
+    //ex281(b, 7);
+    //ex280(e, 6);
+    //ex279(c, 7);
+    //ex278(c, 7);
+    //ex277(d, 7);
+    //ex276(c, 5);
+    //ex275(e, 6);
+    //ex274(e, 6);
+    //ex273(f, 5);
+    //ex272(c, 5);
+    //ex271(c, 5);
+    //input(a, 7);
+    //ex270(f, 5);
+    //ex269(c, 5);
+    //ex266(c, 6);
+    //ex266(c, 5);
+    //ex265(d, e, 7, 5);
+    //ex254(c, 5);
+    //int a[] = {1, -3, 0, 3, 5, 7, 10, 7, 9, 2, 2};
+    //ex286(a, 13);
+    //ex239(a, 11);
+    //ex238(b, 7);
+    //ex233(b, 7);
+    //ex232(b, 7);
+    //ex223(a, 13);
     //ex131(a, 5);
     //ex132(a, 4);
     //ex133(a, 7);
@@ -970,5 +2208,6 @@ int main() {
     //ex168(a, 13);
     //ex169(a, 13);
     //ex170(a, 13);  
+    
     return 0;
 }
