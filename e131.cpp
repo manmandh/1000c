@@ -2069,7 +2069,32 @@ void ex290(int a[], int n){
 }
 
 void ex291(int a[], int n){
-    
+    int max = INT_MIN;
+    int min = INT_MAX;
+    for(int i = 0; i < n; i++) {
+        if(a[i]>max){
+            max=a[i];
+        }
+        if(a[i]<min){
+            min=a[i];
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        if(max==a[i]){
+            a[i]=min;
+        }
+        if(min==a[i]){
+            a[i]=max;
+        }
+    }
+    output(a, n);
+}
+
+void ex292(int a[], int n){
+    for(int i = 0; i < n; i++) {
+        a[i]=round(a[i]);
+    }
+    output(a, n);
 }
 
 void ex307(int a[], int b[], int n){
@@ -2130,18 +2155,262 @@ void ex310(int a[], int b[], int n){
     }
 }
 
+void ex311(int a[][1000], int n, int m){
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; i++) {
+            cin >> a[i][j];  
+        }
+    }
+}
+
+void ex312(double a[][1000], int n, int m){
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; i++) {
+            cin >> a[i][j];  
+        }
+    }
+}
+
+void ex313(int a[][1000], int n, int m){
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; i++) {
+            cout << a[i][j] << " ";  
+        }
+        cout << endl;
+    }
+}
+
+void ex314(double a[][1000], int n, int m){
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; i++) {
+            cout << a[i][j] << " ";  
+        }
+        cout << endl;
+    }
+}
+
+void ex315(double a[][1000], int n, int m){
+    int max = INT_MIN;
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; i++) {
+            if(a[i][j]>max){
+                max=a[i][j];
+            }
+        }
+    }
+    cout << max << endl;
+}
+
+void ex316(int a[][1000], int n, int m){
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; i++) {
+            if(a[i][j]%2==0&& a[i][j]<2004){
+                cout << "YES" << endl;
+                return;
+            }
+        }
+    }
+    cout << "NO" << endl;
+}
+struct MixedNumber{
+    int integerNumber;
+    int numerator;
+    int denominator;
+
+    MixedNumber(int a, int b, int c){
+        integerNumber = a;
+        numerator = b;
+        denominator = c;
+    }
+};
+
+void ex476input(MixedNumber &m){
+    cout << "Enter integer number: " << endl;
+    cin >> m.integerNumber;
+    cout << "Enter numerator: ";
+    cin >> m.numerator;
+    cout << "Enter denomitor: ";
+    cin >> m.denominator;
+}
+
+void ex467output(MixedNumber &m){
+    cout << m.integerNumber << "*(" << m.numerator << "/" << m.denominator << ")";
+}
+
+struct Fraction{
+    int numerator;
+    int denominator;
+
+    Fraction(int num, int deno) {
+        numerator = num;
+        denominator = deno;
+    }
+};
+
+void ex475input(Fraction &f){
+    cout << "Enter numerator: ";
+    cin >> f.numerator;
+    cout << "Enter denominator: ";
+    cin >> f.denominator;
+}
+
+void ex475output(Fraction f){
+    cout << f.numerator << "/" << f.denominator << endl;
+}
+
+struct Coordinate{
+    double x, y;
+    string nameOfPoint;
+};
+
+void ex477input(Coordinate &co){
+    cout << "Enter waypoint x: " << endl;
+    cin >> co.x;
+    cout << "Enter waypoint y: " << endl;
+    cin >> co.y;
+    cout << "Enter name of point: " << endl;
+    cin.ignore();
+    getline(cin, co.nameOfPoint);
+}
+
+void ex477output(Coordinate co){
+    cout << co.nameOfPoint << "(" << co.x << "," << co.y << ")";
+}
+
+struct Coordinatexyz{
+    double x, y, z;
+    string nameOfPoint;
+};
+
+void ex478input(Coordinatexyz &co){
+    cout << "Enter waypoint x: " << endl;
+    cin >> co.x;
+    cout << "Enter waypoint y: " << endl;
+    cin >> co.y;
+    cout << "Enter waypoint z: " << endl;
+    cin >> co.z;
+    cout << "Enter name of point: " << endl;
+    cin.ignore();
+    getline(cin, co.nameOfPoint);
+}
+
+void ex478output(Coordinatexyz co){
+    cout << co.nameOfPoint << "(" << co.x << "," << co.y << "," << co.z << ")";
+}
+
+struct Monomial{
+    double coefficient;
+    char variable;
+    double power;
+};
+
+void ex479input(Monomial &mo){
+    cout << "Enter coefficient: " << endl;
+    cin >> mo.coefficient;
+    cout << "Enter variable: " << endl;
+    cin >> mo.variable;
+    cout << "Enter power: " << endl;
+    cin >> mo.power;
+}
+
+void ex479output(Monomial mo){
+    cout << "P(x) = " << mo.coefficient << "*(" << mo.variable << "^" << mo.power << ")";
+}
+
+struct Polynomial {
+    char variable;
+    int size = 0;
+    vector<int> coeff;
+    void input(){
+        cout << "Enter variable: " << endl;
+        cin >> variable;
+        while(1){
+            cout << "Enter coeffienct: " << endl;
+            int value;
+            cin >> value;
+            coeff.push_back(value);
+            cout << "Continue(y/n): ";
+            char ans;
+            cin >> ans;
+            ++size;
+            if(ans == 'n'){
+                break;
+            }
+        }
+    }
+    void output(){
+        int i = size - 1;
+        for(i; i > 1; i--) {
+            printf("%d%c^%d + ", coeff[i], variable, i);
+        }
+        printf("%d%c + ", coeff[i--], variable);
+        printf("%d", coeff[i]);
+    }
+};
+
+void ex480(){
+    Polynomial po;
+    po.input();
+    po.output();
+}
+
+void ex485() {
+    Coordinate co1;
+    Coordinate co2;
+    Coordinate co3;
+
+    ex477input(co1);
+    ex477input(co2);
+    ex477input(co3);
+
+    double AB = sqrt(pow(co1.x - co2.x, 2) + pow(co1.y - co2.y, 2));
+    double BC = sqrt(pow(co3.x - co2.x, 2) + pow(co3.y - co2.y, 2));
+    double AC = sqrt(pow(co3.x - co1.x, 2) + pow(co3.y - co1.y, 2));
 
 
+    cout << "Perimeter:  " << AB + BC + AC << endl;
+    cout << "Area: " << 0.5 * ((co2.x - co1.x)*(co3.y - co1.y) - (co3.x - co1.x)*(co2.y - co1.y)) << endl;
+    cout << "Barycentric coordinate G is: "
+         << "G(" << (co1.x + co2.x + co3.x) / 3 << "," << (co1.y + co2.y + co3.y) / 3 << ")";
+    //printf("Barycentric coordinate G is: G(%f, %f)", (co1.x + co2.x + co3.x) / 3,(co1.y + co2.y + co3.y) / 3);
+    //S.ABC  = 1/2[(xB-xA)(yC-yA)-(xC-xA)(yB-yA)]
+}
 
-//229 260 268 -- bo
-//279- bi ngao
+//489
 int main() {
-    int a[] = {-8,-1,-2, 8128, 10, 1, 2, 3, 4, 5, 15, 6, 9};
-    int b[] = {12, 43, 12, 34, 43, 12, 5};
-    int c[] = {1, 5, 13, 9, 13, 9, 13};
-    int d[] = {1, 3, 5, 7, 9, 6, 13};
-    int e[] = {2, 4, 6, 8, 10, 25};
-    int f[] = {14, 7, -1, -8, 2};
+    //ex480();
+    // Monomial mo;
+    // ex479input(mo);
+    // ex479output(mo);
+    // Coordinatexyz co;
+    // cout << "Coordinate needed to enter: " << endl;
+    // ex478input(co);
+    // ex478output(co);
+
+    // Fraction fr(1, 2);
+    // cout << "Fraction need to enter: "<< endl;
+    // ex475input(fr);
+    // cout << "The fraction is: " << endl;
+    // ex475output(fr);
+
+    // MixedNumber m(2, 1, 3);
+    // cout << "The mixed number we need to enter: " << endl;
+    // ex476input(m);
+    // cout << "The mixed number is: " << endl;
+    // ex467output(m);
+
+    // Coordinate co;
+    // cout << "Coordinate needed to enter: " << endl;
+    // ex477input(co);
+    // cout << "The coordinate we entered is: " << endl;
+    // ex477output(co);
+
+    // int a[] = {-8,-1,-2, 8128, 10, 1, 2, 3, 4, 5, 15, 6, 9};
+    // int b[] = {12, 43, 12, 34, 43, 12, 5};
+    // int c[] = {1, 5, 13, 9, 13, 9, 13};
+    // int d[] = {1, 3, 5, 7, 9, 6, 13};
+    // int e[] = {2, 4, 6, 8, 10, 25};
+    // int f[] = {14, 7, -1, -8, 2};
     //ex284(e, 6);
     //ex283(b, 7);
     //ex282(d, 7);
