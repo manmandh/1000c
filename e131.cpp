@@ -2376,6 +2376,7 @@ void ex485() {
     //S.ABC  = 1/2[(xB-xA)(yC-yA)-(xC-xA)(yB-yA)]
 }
 
+
 //489
 int main() {
     //ex480();
