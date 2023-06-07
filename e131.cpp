@@ -2240,11 +2240,6 @@ void ex467output(MixedNumber &m){
 struct Fraction{
     int numerator;
     int denominator;
-
-    Fraction(int num, int deno) {
-        numerator = num;
-        denominator = deno;
-    }
 };
 
 void ex475input(Fraction &f){
@@ -2258,6 +2253,54 @@ void ex475output(Fraction f){
     cout << f.numerator << "/" << f.denominator << endl;
 }
 
+void ex506output(Fraction f){
+    int k = gcd(f.numerator, f.denominator);
+    cout << f.numerator / k << "/" << f.denominator / k << endl;
+}
+
+
+void ex507output(Fraction f1, Fraction f2){
+    Fraction result;
+    ex475input(f1);
+    ex475input(f2);
+    result.numerator = f1.numerator * f2.denominator + f1.denominator * f2.numerator;
+    result.denominator = f1.denominator * f2.denominator;
+    ex506output(result);
+}
+
+void ex508output(Fraction f1, Fraction f2){
+    Fraction result;
+    ex475input(f1);
+    ex475input(f2);
+    result.numerator = f1.numerator * f2.denominator - f1.denominator * f2.numerator;
+    result.denominator = f1.denominator * f2.denominator;
+    ex506output(result);
+}
+
+void ex509(Fraction f1, Fraction f2){
+    Fraction result;
+    ex475input(f1);
+    ex475input(f2);
+    result.numerator = f1.numerator *  f2.numerator;
+    result.denominator = f1.denominator * f2.denominator;
+    ex506output(result);
+}
+
+void ex510(Fraction f1, Fraction f2){
+    Fraction result;
+    ex475input(f1);
+    ex475input(f2);
+    result.numerator = f1.numerator* f2.denominator;
+    result.denominator = f1.denominator * f2.numerator;
+    ex506output(result);
+}
+
+void ex512(Fraction f1, Fraction f2){
+    ex475input(f1);
+    ex475input(f2);
+    
+    cout << "(" << f1.numerator << "*" << f2.denominator << "+" << f1.denominator << "*" << f2.numerator << ")/(" << f1.denominator << "*" << f2.denominator <<")";
+}
 struct Coordinate{
     double x, y;
     string nameOfPoint;
@@ -2275,6 +2318,7 @@ void ex477input(Coordinate &co){
 
 void ex477output(Coordinate co){
     cout << co.nameOfPoint << "(" << co.x << "," << co.y << ")";
+
 }
 
 struct Coordinatexyz{
@@ -2317,6 +2361,49 @@ void ex479output(Monomial mo){
     cout << "P(x) = " << mo.coefficient << "*(" << mo.variable << "^" << mo.power << ")";
 }
 
+void ex486output(Monomial mo, Monomial mono){
+    cout << mo.coefficient * mono.coefficient << "x^" << mo.power + mono.power << endl;
+}
+
+void ex487output(Monomial mo) {
+    cout << "Derivative: " << mo.power * mo.coefficient << mo.variable << "^" << mo.power - 1 ;
+}
+
+void ex488output(Monomial mo, Monomial mono){
+    cout << mo.coefficient / mono.coefficient << "x^" << mo.power - mono.power << endl;
+}
+
+void ex489(Monomial &f, int k) {
+    for (int i = 0; i < k; i++) {
+        f.coefficient *= f.power;
+        f.power--;
+    }
+    cout << f.coefficient << "*" << f.variable << "^" << f.power;
+}
+
+
+
+struct Date{
+    int day;
+    int month;
+    int year;
+};
+
+void ex481input(Date &da){
+    cout << "Enter day: " << endl;
+    cin >> da.day;
+    cout << "Enter month: " << endl;
+    cin >> da.month;
+    cout << "Enter year: " << endl;
+    cin >> da.year;
+}
+
+void ex481output(Date da){
+    cout << "Date" << da.day << "/" << da.month  << "/" << da.year << endl ;
+}
+
+
+
 struct Polynomial {
     char variable;
     int size = 0;
@@ -2354,6 +2441,52 @@ void ex480(){
     po.output();
 }
 
+struct Line{
+    int a;
+    int b;
+    int c;
+};
+
+void ex482input(Line &li){
+    cout << "Enter coeffient a: " << endl;
+    cin >> li.a;
+    cout << "Enter coeffient b: " << endl;
+    cin >> li.b;
+    cout << "Enter coeffient c: " << endl;
+    cin >> li.c;
+}
+
+void ex482output(Line li){
+    cout << li.a << "x + " << li.b << "y + " << li.c << " = 0" << endl;
+}
+
+struct Circle {
+    double x;
+    double y;
+    double radius;
+};
+
+void ex483input(Circle &ci){
+    cout << "Enter waypoint x: ";
+    cin >> ci.x;
+    cout << "Enter waypoint y: ";
+    cin >> ci.y;
+    cout << "Enter radius: ";
+    cin >> ci.radius;
+}
+
+void ex483output(Circle ci){
+    cout << "Circle: I(" << ci.x << ", " << ci.y << "), R: " << ci.radius << endl;
+}
+
+void ex484S(Circle &ci){
+    double S= M_PI * ci.radius * ci.radius;
+}
+
+void ex484P(Circle &ci){
+    double P = 2 * M_PI *ci.radius;
+}
+
 void ex485() {
     Coordinate co1;
     Coordinate co2;
@@ -2377,12 +2510,365 @@ void ex485() {
 }
 
 
-//489
-int main() {
-    //ex480();
+
+struct TINH {
+    int id;
+    string name;
+    int population;
+    double area;
+
+    void input() {
+        cout << "Enter id: " << endl;
+        cin >> id;
+        cin.ignore();
+        cout << "Enter name of city: " << endl;
+        getline(cin, name);
+        cout << "Enter population: " << endl;
+        cin >> population;
+        cout << "Enter area: " << endl;
+        cin >> area;
+    }
+
+    void output() {
+        cout << id << " " << name << " "<< population << " " << area << endl;
+    }
+};
+
+struct HOPSUA{
+    string branch;
+    double weight;
+    Date date;
+
+    void input(){
+        getline(cin, branch);
+        cin >> weight;
+        ex481input(date);
+    }
+    
+    void output(){
+        cout << branch << " " << weight << " ";
+        ex481output(date);
+    }
+};
+struct Time{
+    int hour;
+    int minute;
+    int second;
+
+    void input(){
+        cin >> hour;
+        cin >> minute;
+        cin >> second;
+    }
+
+    void output(){
+        cout << hour;
+        cout << minute;
+        cout << second;
+    }
+
+};
+struct VE{
+    string name;
+    int price;
+    Time time;
+    
+    void input(){
+        getline(cin, name);
+        cin >> price;
+        time.input();
+    }
+
+    void output(){
+        cout << name << " " << price << endl;
+        time.output();
+    }
+};
+
+struct MATHANG{
+    string name;
+    int simple;
+    int amount;
+
+    void input(){
+        getline(cin, name);
+        cin >> simple;
+        cin >> amount;
+    }
+
+    void output(){
+        cout << name << " " << simple << " " << amount;
+    }
+};
+
+struct CHUYENBAY{
+    int id;
+    Date date;
+    int hour;
+    string placeIn;
+    string placeOut;
+
+    void input(){
+        cin >> id;
+        ex481input(date);
+        cin >> hour;
+        cin.ignore();
+        getline(cin, placeIn);
+        getline(cin, placeOut);   
+    }
+
+    void output(){
+        cout << id;
+        ex481output(date);
+        cout << hour << placeIn << placeOut << endl;
+    }
+};
+
+struct CAUTHU{
+    int id;
+    string name;
+    Date date;
+
+    void input(){
+        cin >> id;
+        cin.ignore();
+        getline(cin, name);
+        ex481input(date);
+    }
+
+    void output(){
+        cout << id << " " << name;
+        ex481output(date);
+    }
+};
+
+struct DOIBONG{
+    int id;
+    string nameOfTeam;
+    string nameOfPlayer[30];
+
+    void input(){
+        cin >> id;
+        cin.ignore();
+        getline(cin, nameOfTeam);
+        for (int i = 0; i < 30; i++){
+            getline(cin, nameOfPlayer[i]);
+        }
+    }
+
+    void output(){
+        cout << id << nameOfTeam;
+        for (int i = 0; i < 30; i++){
+            cout << nameOfPlayer[i] << " ";
+        }
+    }
+};
+
+struct NHANVIEN{
+    int id;
+    string name;
+    double salary;
+
+    void input(){
+        cin >> id;
+        cin.ignore();
+        getline(cin, name);
+        cin >> salary;
+    }
+
+    void output(){
+        cout << id <<" "<< name << " " << salary << endl;
+    }
+};
+
+struct THISINH{
+    int id;
+    double Maths;
+    double Physics;
+    double Chemistry;
+    double total;
+
+    void input(){
+        cin >> id;
+        cin >> Maths >> Physics >> Chemistry >> total;
+    }
+
+    void output(){
+        cout << id << " " << Maths << " " << Physics << " " << Chemistry << " " << total << endl;
+    }
+};
+
+struct LUANVAN{
+    int id;
+    string nameOfLiterature;
+    string nameOfStudent;
+    string nameOfTeacher;
+    int year;
+
+    void input(){
+        cin >> id;
+        cin.ignore();
+        getline(cin, nameOfLiterature);
+        getline(cin, nameOfStudent);
+        getline(cin, nameOfTeacher);
+    }
+
+    void output(){
+        cout << id << " " << nameOfLiterature << " " << nameOfStudent << " " << nameOfTeacher << " " << year << endl;
+    }
+};
+
+struct HOCSINH{
+    string name;
+    int Maths;
+    int Literature;
+    int average = (Maths + Literature) / 2;
+
+    void input(){
+        cin >> Maths >> Literature >> average;
+    }
+
+    void output(){
+        cout << Maths << " " << Literature << " " << average;
+    }
+};
+
+struct  LOPHOC{
+    string nameOfClass;
+    int id;
+    string nameOfStudent[50];
+
+    void inout(){
+        cin >> id;
+        cin.ignore();
+        getline(cin, nameOfClass);
+        for (int i = 0; i < 50; i++){
+            getline(cin, nameOfStudent[i]);
+        }
+    }
+
+    void output(){
+        cout << id << " " << nameOfClass;
+        for(int i = 0; i < 50; i++) {
+            cout << nameOfStudent[i] << " ";
+        }
+    }
+};
+
+struct SOTIETKIEM{
+    int id;
+    string typeOfSave;
+    string nameOfCustomer;
+    int CMND;
+    Date date;
+    double givenMoney;
+
+    void input(){
+        cin >> id;
+        cin >> CMND;
+        cin >> givenMoney;
+        cin.ignore();
+        getline(cin, typeOfSave);
+        getline(cin, nameOfCustomer);
+        ex481input(date);
+    }
+
+    void output(){
+        cout << id << " " << CMND << " " << givenMoney << " " << typeOfSave << " " << nameOfCustomer << " ";
+        ex481output(date);
+    }
+
+};
+
+struct DAILY{
+    int id;
+    string name;
+    int phone;
+    Date date;
+    string address;
+    string email;
+
+    void input(){
+        cin >> id >> phone;
+        cin.ignore();
+        getline(cin, name);
+        getline(cin, address);
+        getline(cin, email);
+        ex481input(date);
+    }
+
+    void output(){
+        cout << id << " " << phone << " " << name << " " << address << " " << email << " ";
+        ex481output(date);
+    }
+};
+
+void ex621(){
+    int n;
+    cin >> n;
+    int a[100];
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+}
+
+void ex622(){
+    int n;
+    cin >> n;
+    int a[100];
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+void ex632(){
+    int n;
+    cin >> n;
+    int a[100];
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+}
+
+void ex633(){
+    int n;
+    cin >> n;
+    int a[100];
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+}
+
+
+// 489
+int main()
+{
+    // 607 - 622
+    // TINH ti;
+    // ti.input();
+    // ti.output();
+    // Circle ci;
+    // ex483input(ci);
+    // ex483output(ci);
+    // ex484S(ci);
+    // ex484P(ci);
+
+    // Line li;
+    // ex482input(li);
+    // ex482output(li);
+    // Date da;
+    // ex481input(da);
+    // ex481output(da);
+    // ex485();
+    // ex480();
     // Monomial mo;
+    // Monomial mono;
     // ex479input(mo);
+    // ex479input(mono);
     // ex479output(mo);
+    // ex486output(mo, mono);
+    // ex487output(mo);
+    // ex488output(mo, mono);
     // Coordinatexyz co;
     // cout << "Coordinate needed to enter: " << endl;
     // ex478input(co);
