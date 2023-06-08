@@ -2216,12 +2216,6 @@ struct MixedNumber{
     int integerNumber;
     int numerator;
     int denominator;
-
-    MixedNumber(int a, int b, int c){
-        integerNumber = a;
-        numerator = b;
-        denominator = c;
-    }
 };
 
 void ex476input(MixedNumber &m){
@@ -2233,7 +2227,7 @@ void ex476input(MixedNumber &m){
     cin >> m.denominator;
 }
 
-void ex467output(MixedNumber &m){
+void ex476output(MixedNumber &m){
     cout << m.integerNumber << "*(" << m.numerator << "/" << m.denominator << ")";
 }
 
@@ -2301,6 +2295,199 @@ void ex512(Fraction f1, Fraction f2){
     
     cout << "(" << f1.numerator << "*" << f2.denominator << "+" << f1.denominator << "*" << f2.numerator << ")/(" << f1.denominator << "*" << f2.denominator <<")";
 }
+
+void ex513_4(Fraction f1){
+    if(f1.numerator * f1.denominator > 0){
+        cout << "This is positive fraction";
+    }else if(f1.numerator * f1.denominator < 0){
+        cout << "This is negative fraction";
+    }
+}
+
+void ex515(Fraction f1, Fraction f2){
+    if (f1.numerator*f2.denominator-f2.numerator*f1.denominator >= 0)
+        cout << "f1 > f2";
+    else
+        cout << "f2 > f1";
+}
+
+// Fraction operator * (const Fraction f1, const Fraction f2) {
+//     Fraction result;
+//     result.numerator = f1.numerator * f2.denominator + f1.denominator * f2.numerator;
+//     result.denominator = f1.denominator * f2.denominator;
+// }
+
+// Fraction operator * (const Fraction f1, Fraction f2){
+//     Fraction result;
+//     result.numerator = f1.numerator * f2.denominator - f1.denominator * f2.numerator;
+//     result.denominator = f1.denominator * f2.denominator;
+// }
+
+// Fraction operator * (const Fraction f1, Fraction f2){
+//     result.numerator = f1.numerator *  f2.numerator;
+//     result.denominator = f1.denominator * f2.denominator;
+// }
+
+// Fraction operator * (const Fraction f1, Fraction f2){
+//     result.numerator = f1.numerator *  f2.denominator;
+//     result.denominator = f1.denominator * f2.numerator;
+// }  
+
+struct MixNumber{
+    int whole;
+    int numerator;
+    int denominator;
+};
+
+void ex523(MixNumber &m){
+    cout << "Enter whole: " << endl;
+    cin >> m.whole;
+    cout << "Enter numerator: ";
+    cin >> m.numerator;
+    cout << "Enter denomitor: ";
+    cin >> m.denominator;
+}
+
+void ex524(MixNumber &m){
+    cout << m.whole << "*(" << m.numerator << "/" << m.denominator << ")";
+}
+
+void ex525output(MixNumber m){
+    int tempNumerator = m.whole * m.denominator + m.numerator;
+    int tempDenominator = m.denominator;
+    int k = gcd(tempNumerator, tempDenominator );
+    cout << tempNumerator/ k << "/" << tempDenominator / k << endl;
+}
+
+void ex526output(MixNumber m1, MixNumber m2){
+    MixNumber result;
+    Fraction f1, f2, f;
+    f1.numerator = m1.whole * m1.denominator + m1.numerator;
+    f1.denominator = m1.denominator;
+    f2.numerator = m2.whole * m2.denominator + m2.numerator;
+    f2.denominator = m2.denominator;
+    f.numerator = f1.numerator * f2.denominator + f1.denominator * f2.numerator;
+    f.denominator = f1.denominator * f2.denominator;
+    result.whole = (int)f.numerator / f.denominator;
+    result.numerator = f.numerator % f.denominator;
+    result.denominator = f.denominator;
+    ex524(result);
+}
+
+void ex527output(MixNumber m1, MixNumber m2){
+    MixNumber result;
+    Fraction f1, f2, f;
+    f1.numerator = m1.whole * m1.denominator + m1.numerator;
+    f1.denominator = m1.denominator;
+    f2.numerator = m2.whole * m2.denominator + m2.numerator;
+    f2.denominator = m2.denominator;
+    f.numerator = f1.numerator * f2.denominator - f1.denominator * f2.numerator;
+    f.denominator = f1.denominator * f2.denominator;
+    result.whole = (int)f.numerator / f.denominator;
+    result.numerator = f.numerator % f.denominator;
+    result.denominator = f.denominator;
+    ex524(result);
+}
+
+void ex528output(MixNumber m1, MixNumber m2){
+    MixNumber result;
+    Fraction f1, f2, f;
+    f1.numerator = m1.whole * m1.denominator + m1.numerator;
+    f1.denominator = m1.denominator;
+    f2.numerator = m2.whole * m2.denominator + m2.numerator;
+    f2.denominator = m2.denominator;
+    f.numerator = f1.numerator *  f2.numerator;
+    f.denominator = f1.denominator * f2.denominator;
+    result.whole = (int)f.numerator / f.denominator;
+    result.numerator = f.numerator % f.denominator;
+    result.denominator = f.denominator;
+    ex524(result);
+}
+
+void ex529output(MixNumber m1, MixNumber m2){
+    MixNumber result;
+    Fraction f1, f2, f;
+    f1.numerator = m1.whole * m1.denominator + m1.numerator;
+    f1.denominator = m1.denominator;
+    f2.numerator = m2.whole * m2.denominator + m2.numerator;
+    f2.denominator = m2.denominator;
+    f.numerator = f1.numerator *  f2.denominator;
+    f.denominator = f1.denominator * f2.numerator;
+    result.whole = (int)f.numerator / f.denominator;
+    result.numerator = f.numerator % f.denominator;
+    result.denominator = f.denominator;
+    ex524(result);
+}
+
+void ex511(Fraction f){
+    int k = gcd(f.numerator, f.denominator);
+    if (k==1){
+        cout << "YES";
+    }else{
+        cout << "NO";
+    }
+}
+
+void ex530output(MixNumber m){
+    int tempNumerator = m.whole * m.denominator + m.numerator;
+    int tempDenominator = m.denominator;
+    int k = gcd(tempNumerator, tempDenominator );
+    if(k==1){
+        cout << "YES";
+    }else{
+        cout << "NO";
+    }
+}
+
+// z = a + bi
+// i^2 = -1;
+struct ComplexNumber{
+    int a, b;
+    ComplexNumber operator + (const ComplexNumber other){
+        ComplexNumber total;
+        total.a = a + other.a;
+        total.b = b + other.b;
+        return total;
+    }
+};
+
+void ex533(ComplexNumber c){
+    cin >> c.a;
+    cin >> c.b;
+}
+
+void ex534(ComplexNumber c){
+    cout << c.a << "+" << c.b << "i";
+}
+
+void ex535(ComplexNumber c1, ComplexNumber c2){
+    ComplexNumber total;
+    total.a = c1.a + c2.b;
+    total.b = c1.b + c2.b;
+    cout << total.a << "+" << total.b << "i" << endl;
+}
+
+void ex536(ComplexNumber c1, ComplexNumber c2){
+    ComplexNumber theDifference;
+    theDifference.a = c1.a - c2.a;
+    theDifference.b = c1.b - c2.b;
+    cout << theDifference.a <<"+"<< theDifference.b <<"i" << endl;
+}
+//(a+bi)(c+di)=(ac-bd)+(ad+bc)i
+void ex537(ComplexNumber c1, ComplexNumber c2){
+    double productReal, productImag;
+    productReal = (c1.a * c2.a - c1.b * c2.b);
+    productImag = (c1.a * c2.b + c2.a * c1.b);
+    cout << productReal << "+" << productImag << "i";
+}
+
+void ex539(ComplexNumber c1, ComplexNumber c2){
+    double quotientReal, quotientImag;
+    quotientReal = (c1.a * c2.a + c1.b * c2.b) / (c1.a * c1.a + c1.b * c1.b);
+    quotientImag = (c1.a*c2.b-c1.b*c2.a)/(c1.a * c1.a + c1.b * c1.b);
+    cout << quotientReal << "+" << quotientImag << "i" << endl;
+}
+
 struct Coordinate{
     double x, y;
     string nameOfPoint;
@@ -2318,13 +2505,258 @@ void ex477input(Coordinate &co){
 
 void ex477output(Coordinate co){
     cout << co.nameOfPoint << "(" << co.x << "," << co.y << ")";
-
 }
+//A(x,y) B(a,b)
+//AB = căn[(a-x)^2 + (b-y)^2]
+
+void ex543(Coordinate co1, Coordinate co2){
+    ex477input(co1);
+    ex477input(co2);
+    double difference = sqrt((co2.x-co1.x)*(co2.x-co1.x)+ (co2.y-co1.y)*(co2.y-co1.y));
+    cout << difference << endl;
+}
+
+void ex544(Coordinate co1, Coordinate co2){
+    ex477input(co1);
+    ex477input(co2);
+    double differenceOx = abs(co2.x - co1.x);
+    cout << differenceOx << endl;
+}
+
+void ex545(Coordinate co1, Coordinate co2){
+    ex477input(co1);
+    ex477input(co2);
+    double differenceOy = abs(co2.y- co1.y);
+    cout << differenceOy << endl;
+}
+
+void ex546(Coordinate co){
+    ex477input(co);
+    cout << co.nameOfPoint << "(" << -1*co.x << "," << -1*co.y << ")";
+}
+
+void ex547(Coordinate co){
+    ex477input(co);
+    cout << co.nameOfPoint << "(" << co.x << "," << -1*co.y << ")";
+}
+
+void ex548(Coordinate co){
+    ex477input(co);
+    cout << co.nameOfPoint << "(" << -1*co.x << "," << co.y << ")";
+}
+
+struct Point{
+    int x, y;
+    char name;
+
+    void input() {
+        cin >> name >> x >> y;
+    }
+    void output() {
+        printf("%c(%d, %d)", name, x, y);
+    }
+};
+
+Coordinate findSymmetricPoint(const Coordinate& p) {
+    Coordinate symmetricPoint;
+    symmetricPoint.x = p.y; 
+    symmetricPoint.y = p.x;
+    return symmetricPoint;
+}
+
+Coordinate findSymmetricPointReverse(const Coordinate& p) {
+    Coordinate symmetricPoint;
+    symmetricPoint.x = -1*p.y; 
+    symmetricPoint.y = -1*p.x;
+    return symmetricPoint;
+}
+
+void ex549(Coordinate co){
+    ex477input(co);
+    Coordinate symmetricPoint = findSymmetricPoint(co);
+}
+
+void ex550(Coordinate co){
+    ex477input(co);
+    Coordinate symmetricPoint = findSymmetricPointReverse(co);
+}
+
+
+void ex551(Coordinate co){
+    ex477input(co);
+    if(co.x>0&&co.y>0){
+        cout << "I";
+    }else{
+        cout << "NO";
+    }
+}
+
+void ex552(Coordinate co){
+    ex477input(co);
+    if(co.y>0&&co.x<0){
+        cout << "II";
+    }else{
+        cout << "NO";
+    }
+}
+
+void ex553(Coordinate co){
+    ex477input(co);
+    if(co.y<0&&co.x<0){
+        cout << "III";
+    }else{
+        cout << "NO";
+    }
+}
+
+void ex554(Coordinate co){
+    ex477input(co);
+    if(co.y<0&&co.x>0){
+        cout << "IV";
+    }else{
+        cout << "NO";
+    }
+}
+
 
 struct Coordinatexyz{
     double x, y, z;
     string nameOfPoint;
 };
+
+struct Globular{
+    double x, y, z;
+    string nameOfPoint;
+    double radius;
+};
+
+void ex575(Globular &glo){
+    cout << "Enter waypoint x: " << endl;
+    cin >> glo.x;
+    cout << "Enter waypoint y: " << endl;
+    cin >> glo.y;
+    cout << "Enter waypoint z: " << endl;
+    cin >> glo.z;
+    cout << "Enter radius: " << endl;
+    cin >> glo.radius;
+    cout << "Enter name of point: " << endl;
+    cin.ignore();
+    getline(cin, glo.nameOfPoint);
+
+}
+
+void ex576(Globular glo){
+    cout << glo.nameOfPoint << "(" << glo.x << "," << glo.y << "," << glo.z << ")";
+    cout << "R = " << glo.radius;
+}
+
+void ex577(Globular glo){
+    ex575(glo);
+    double areaGlobular = 4 * M_PI * glo.radius * glo.radius;
+    cout << areaGlobular << endl;
+}
+
+void ex578(Globular glo){
+    ex575(glo);
+    double volumeGlobular = (4.0/3)*M_PI* glo.radius * glo.radius*glo.radius;
+    cout << volumeGlobular << endl;
+}
+
+void ex579(Globular ci1, Globular ci2){
+    ex575(ci1);
+    ex575(ci2);
+    double difference = sqrt((ci2.x-ci1.x)*(ci2.x-ci1.x)+ (ci2.y-ci1.y)*(ci2.y-ci1.y)+(ci2.z-ci1.z)*(ci2.z-ci1.z));
+    if(difference>(ci1.radius+ci2.radius)){
+        cout << "Khong cat nhau" << endl;
+    }else if(difference<(ci1.radius+ci2.radius)){
+        cout << "Cat nhau" << endl;
+    }else{
+        cout << "Tiep xuc" << endl;
+    }
+}
+
+void ex580(Globular ci, Coordinate p){
+    ex575(ci);
+    ex477input(p);
+    double difference = sqrt((p.x-ci.x)*(p.x-ci.x)+ (p.y-ci.y)*(p.y-ci.y));
+    if(difference<ci.radius){
+        cout << "Nam trong hinh cau";
+    }else{
+        cout << "Khong nam trong hinh cau";
+    }
+}
+
+struct Triangle{
+    Point A, B, C;
+    void input() {
+        A.input();
+        B.input();
+        C.input();
+    }
+    void output(){
+        A.output();
+        B.output();
+        C.output();
+    }
+};
+
+void ex583(Triangle tri){
+    tri.output();
+}
+
+void ex584(Triangle tri){
+    tri.input();
+    int distanceAB = sqrt((tri.B.x - tri.A.x) * (tri.B.x - tri.A.x) + (tri.B.y - tri.A.y) * (tri.B.y - tri.A.y));
+
+    int distanceAC = sqrt((tri.C.x - tri.A.x) * (tri.C.x - tri.A.x) + (tri.C.y - tri.A.y) * (tri.C.y - tri.A.y));
+
+    int distanceBC = sqrt((tri.C.x - tri.B.x) * (tri.C.x - tri.B.x) + (tri.C.y - tri.B.y) * (tri.C.y - tri.B.y));
+
+    if(((distanceAB + distanceAC)>distanceBC)&&(distanceAB < (distanceAC+distanceBC))&&((distanceAB + distanceBC)>distanceAC)){
+        cout << "Toa do lap thanh 3 dinh cua mot tam giac" << endl;
+    }else{
+        cout << "Toa do ko lap thanh 3 dinh cua mot tam giac" << endl;
+    }
+}
+
+void ex585(Triangle tri){
+    tri.input();
+    int distanceAB = sqrt((tri.B.x - tri.A.x) * (tri.B.x - tri.A.x) + (tri.B.y - tri.A.y) * (tri.B.y - tri.A.y));
+
+    int distanceAC = sqrt((tri.C.x - tri.A.x) * (tri.C.x - tri.A.x) + (tri.C.y - tri.A.y) * (tri.C.y - tri.A.y));
+
+    int distanceBC = sqrt((tri.C.x - tri.B.x) * (tri.C.x - tri.B.x) + (tri.C.y - tri.B.y) * (tri.C.y - tri.B.y));
+    cout << distanceAB + distanceAC + distanceBC;
+}
+
+void ex586(Triangle tri){
+    tri.input();
+    int distanceAB = sqrt((tri.B.x - tri.A.x) * (tri.B.x - tri.A.x) + (tri.B.y - tri.A.y) * (tri.B.y - tri.A.y));
+
+    int distanceAC = sqrt((tri.C.x - tri.A.x) * (tri.C.x - tri.A.x) + (tri.C.y - tri.A.y) * (tri.C.y - tri.A.y));
+
+    int distanceBC = sqrt((tri.C.x - tri.B.x) * (tri.C.x - tri.B.x) + (tri.C.y - tri.B.y) * (tri.C.y - tri.B.y));
+
+    int p = distanceAB + distanceAC + distanceBC;
+    cout << sqrt(p * (p - distanceAB) * (p - distanceAC) * (p - distanceBC));
+}
+
+void ex587(Triangle tri){
+    tri.input();
+    int pointX = (tri.A.x + tri.B.x + tri.C.x) / 3;
+    int pointY = (tri.A.y + tri.B.y + tri.C.y) / 3;
+    cout << "G(" << pointX << ";" << pointY << ")";
+}
+
+void ex588(Triangle t) {
+    int maxX = max(max(t.A.x, t.B.x), t.C.x);
+    cout << maxX << endl;
+}
+
+void ex589(Triangle t) {
+    int minY = min(min(t.A.y, t.B.y), t.C.y);
+    cout << minY << endl;
+}
 
 void ex478input(Coordinatexyz &co){
     cout << "Enter waypoint x: " << endl;
@@ -2342,11 +2774,65 @@ void ex478output(Coordinatexyz co){
     cout << co.nameOfPoint << "(" << co.x << "," << co.y << "," << co.z << ")";
 }
 
+void ex558(Coordinatexyz p1, Coordinatexyz p2){
+    double distance = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2) + pow(p2.z - p1.z, 2));
+    cout << distance << endl;
+}
+
+void ex559(Coordinatexyz p1, Coordinatexyz p2){
+    double differenceOx = abs(p2.x - p1.x);
+    cout << differenceOx << endl;
+}
+
+void ex560(Coordinatexyz p1, Coordinatexyz p2){
+    double differenceOy = abs(p2.y - p1.y);
+    cout << differenceOy << endl;
+}
+
+void ex561(Coordinatexyz p1, Coordinatexyz p2){
+    double differenceOz = abs(p2.z - p1.z);
+    cout << differenceOz << endl;
+}
+
+void ex562(Coordinatexyz co){
+    ex478input(co);
+    cout << co.nameOfPoint << "(" << -1*co.x << "," << -1*co.y << "," << -1*co.z << ")";
+}
+
+void ex563(Coordinatexyz co){
+    ex478input(co);
+    cout << co.nameOfPoint << "(" << co.x << "," << co.y << "," << -1*co.z << ")";
+}
+
+void ex564(Coordinatexyz co){
+    ex478input(co);
+    cout << co.nameOfPoint << "(" << co.x << "," << -1*co.y << "," << co.z << ")";
+}
+
+void ex565(Coordinatexyz co){
+    ex478input(co);
+    cout << co.nameOfPoint << "(" << -1*co.x << "," << co.y << "," << co.z << ")";
+}
+
+
 struct Monomial{
     double coefficient;
     char variable;
     double power;
+    // friend Monomial operator * (const Monomial mo, const Monomial mono) {
+    //     Monomial result;
+    //     result.coefficient = (mo.coefficient * mono.coefficient);
+    //     result.power = mo.power + mono.power;
+    //     return result;
+    // }
 };
+
+
+// Monomial operator * (const Monomial mo, const Monomial mono) {
+//     Monomial result;
+//     result.coefficient = (mo.coefficient / mono.coefficient);
+//     result.power = mo.power - mono.power;
+// }
 
 void ex479input(Monomial &mo){
     cout << "Enter coefficient: " << endl;
@@ -2381,7 +2867,10 @@ void ex489(Monomial &f, int k) {
     cout << f.coefficient << "*" << f.variable << "^" << f.power;
 }
 
-
+void ex490(Monomial mo, int x0){
+    int result = mo.coefficient * pow(x0, mo.power);
+    cout << result;
+}
 
 struct Date{
     int day;
@@ -2401,8 +2890,6 @@ void ex481input(Date &da){
 void ex481output(Date da){
     cout << "Date" << da.day << "/" << da.month  << "/" << da.year << endl ;
 }
-
-
 
 struct Polynomial {
     char variable;
@@ -2487,6 +2974,30 @@ void ex484P(Circle &ci){
     double P = 2 * M_PI *ci.radius;
 }
 
+void ex571(Circle ci1, Circle ci2){
+    ex483input(ci1);
+    ex483input(ci2);
+    double difference = sqrt((ci2.x-ci1.x)*(ci2.x-ci1.x)+ (ci2.y-ci1.y)*(ci2.y-ci1.y));
+    if(difference>(ci1.radius+ci2.radius)){
+        cout << "Khong cat nhau" << endl;
+    }else if(difference<(ci1.radius+ci2.radius)){
+        cout << "Cat nhau" << endl;
+    }else{
+        cout << "Tiep xuc" << endl;
+    }
+}
+
+void ex572(Circle ci, Coordinate p){
+    ex483input(ci);
+    ex477input(p);
+    double difference = sqrt((p.x-ci.x)*(p.x-ci.x)+ (p.y-ci.y)*(p.y-ci.y));
+    if(difference<ci.radius){
+        cout << "Nam trong duong tron";
+    }else{
+        cout << "Khong nam trong duong tron";
+    }
+}
+
 void ex485() {
     Coordinate co1;
     Coordinate co2;
@@ -2508,8 +3019,6 @@ void ex485() {
     //printf("Barycentric coordinate G is: G(%f, %f)", (co1.x + co2.x + co3.x) / 3,(co1.y + co2.y + co3.y) / 3);
     //S.ABC  = 1/2[(xB-xA)(yC-yA)-(xC-xA)(yB-yA)]
 }
-
-
 
 struct TINH {
     int id;
@@ -2821,6 +3330,53 @@ void ex622(){
     }
 }
 
+
+void ex623(){
+    int n;
+    cin >> n;
+    Point a[100];
+    int count = 0;
+    for(int i = 0; i < n; i++) {
+        if(a[i].x>0){
+            count++;
+        }
+    }
+    cout << count;
+}
+
+void ex624(int a[], int n) {
+    int count = 0;
+    bool check = true;
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            if (i != j && a[i] == a[j]) {
+                check = false;
+                break;
+            }
+        }
+        if (check) {
+            count++;
+        }
+    }
+    cout << count;
+}
+
+void ex625(Point a[], int n){
+    for(int i = 1; i < n; i++) {
+        cin >> a[i];
+    }
+    Point maxPoint = a[0];
+    for(int i = 1; i < n; i++) {
+        if(a[i].y>maxPoint.y){
+            maxPoint = a[i];
+        }
+    }
+}
+
+
+
+
+
 void ex632(){
     int n;
     cin >> n;
@@ -2840,10 +3396,15 @@ void ex633(){
 }
 
 
+
+
+
 // 489
 int main()
 {
-    // 607 - 622
+    // het 589
+    //486
+    // 607 - 624
     // TINH ti;
     // ti.input();
     // ti.output();
