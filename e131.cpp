@@ -2828,8 +2828,9 @@ void ex592(Point A, Point B, Point C){
         }else if(a==b||b==c||c==a){
             cout << "Tam giac can";
         }
-    }else{
-        cout << "Khong phai tam giac";
+        }else{
+            cout << "Khong phai tam giac";
+        }
     }
 }
 
