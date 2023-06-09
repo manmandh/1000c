@@ -2802,15 +2802,34 @@ bool isInsideTriangle(Point A, Point B, Point C, Point P) {
     return (ABC == ABP + APC + PBC);
 }
 
-void ex591(Point A, Point B, Point B, Point D){
+void ex591(Point A, Point B, Point C, Point P){
     cin >> A.x >> A.y;
     cin >> B.x >> B.y;
     cin >> C.x >> C.y;
     cin >> P.x >> P.y;
     if (isInsideTriangle(A, B, C, P)) {
-        cout << "Diem P nam trong tam giac ABC.";
+        cout << "Diem P nam trong tam giac ABC";
     } else {
-        cout << "Diem P khong nam trong tam giac ABC.";
+        cout << "Diem P khong nam trong tam giac ABC";
+    }
+}
+
+void ex592(Point A, Point B, Point C){
+    double a = sqrt(pow(B.x - C.x, 2) + pow(B.y - C.y, 2));
+    double b = sqrt(pow(A.x - C.x, 2) + pow(A.y - C.y, 2));
+    double c = sqrt(pow(A.x - B.x, 2) + pow(A.y - B.y, 2));
+    if(a+b>c||a+c<b||b+c>a){
+        if(a==b&&a==c&&b==c){
+            cout << "Tam giac deu";
+        }else if(a*a==b*b+c*c||c*c==a*a+b*b==||b*b==a*a+c*c){
+            cout << "Tam giac vuong";
+            if(a==b||b==c||c==a){
+            cout << "Tam giac vuong can";
+        }else if(a==b||b==c||c==a){
+            cout << "Tam giac can";
+        }
+    }else{
+        cout << "Khong phai tam giac";
     }
 }
 
