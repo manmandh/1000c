@@ -2700,6 +2700,13 @@ struct Triangle{
     }
 };
 
+
+int findDistance(Point p1, Point p2){
+    int distanceX = p1.x - p2.x;
+    int distanceY = p1.y - p2.y;
+    return sqrt(distanceX * distanceX + distanceY * distanceY);
+}
+
 void ex583(Triangle tri){
     tri.output();
 }
@@ -2756,6 +2763,26 @@ void ex588(Triangle t) {
 void ex589(Triangle t) {
     int minY = min(min(t.A.y, t.B.y), t.C.y);
     cout << minY << endl;
+}
+
+struct TriangleHasP{
+    Point P, A, B, C;
+    void input() {
+        A.input();
+        B.input();
+        C.input();
+    }
+    void output(){
+        A.output();
+        B.output();
+        C.output();
+    }
+};
+
+void ex590(TriangleHasP tri){
+    tri.input();
+    int distance = findDistance(tri.P, tri.A) + findDistance(tri.P, tri.B) + findDistance(tri.P, tri.C);
+    cout << "Total: " << distance << endl;
 }
 
 void ex478input(Coordinatexyz &co){
@@ -3559,13 +3586,95 @@ void ex625(Point a[], int n){
             maxPoint = a[i];
         }
     }
+
+    for(int i = 1; i < n; i++) {
+        cout << a[i];
+    }
 }
  
-//626 tinh binh phuong x,y
+void ex626(Point a[], int n){
+    for(int i = 1; i < n; i++) {
+        cin >> a[i];
+    }
 
+    Point nearPoint = a[0];
+    int minDistance = pow(a[0].x, 2) + pow(a[0].y, 2);
 
+    for(int i = 1; i < n; i++) {
+        int distance = pow(a[i].x, 2) + pow(a[i].y, 2);
+        if(distance < minDistance){
+            minDistance = distance;
+            nearPoint = a[i];
+        }
+    }
 
+    for(int i = 1; i < n; i++) {
+        cout << a[i];
+    }
+}
 
+void ex627(Point a[], int n){
+    for(int i = 1; i < n; i++) {
+        cin >> a[i];
+    }
+
+    Point longPoint = a[INT_MIN];
+    int maxDistance = pow(a[0].x, 2) + pow(a[0].y, 2);
+
+    for(int i = 1; i < n; i++) {
+        int distance = pow(a[i].x, 2) + pow(a[i].y, 2);
+        if(distance > maxDistance){
+            maxDistance = distance;
+            longPoint = a[i];
+        }
+    }
+
+    for(int i = 1; i < n; i++) {
+        cout << a[i];
+    }
+}
+
+int findDistance(Point p1, Point p2){
+    int distanceX = p1.x - p2.x;
+    int distanceY = p1.y - p2.y;
+    return sqrt(distanceX * distanceX + distanceY * distanceY);
+}
+
+void ex628(Point a[], int n){
+    int minDistance = INT_MAX;
+    Point nearPoint1, nearPoint2;
+
+    for(int i = 0; i < n; i++) {
+        for(int j = i + 1; j < n; j++) {
+            int d = findDistance(a[i], a[j];)
+            if(d<minDistance){
+                minDistance = d;
+                nearPoint1 = a[i];
+                nearPoint2 = a[j];
+            }
+        }
+    }
+
+    cout << "Point is the nearest: (" << nearPoint1.x << "," << nearPoint1.y << ") and (" << nearPoint2.x << "," << nearPoint2.y << ")";
+}
+
+void ex629(Point a[], int n){
+    int maxDistance = INT_MIN;
+    Point longPoint1, longPoint2;
+
+    for(int i = 0; i < n; i++) {
+        for(int j = i + 1; j < n; j++) {
+            int d = findDistance(a[i], a[j];)
+            if(d>maxDistance){
+                maxDistance = d;
+                longPoint1 = a[i];
+                longPoint2 = a[j];
+            }
+        }
+    }
+
+    cout << "Point is the longest: (" << longPoint1.x << "," << longPoint1.y << ") and (" << longPoint2.x << "," << longPoint2.y << ")";
+}
 
 void ex632(){
     int n;
@@ -3583,6 +3692,28 @@ void ex633(){
     for(int i = 0; i < n; i++) {
         cout << a[i] << " ";
     }
+}
+
+void ex634(Fraction f[], int n){
+    int count = 0;
+
+    for(int i = 0; i < n; i++) {
+        if(f[i].numerator>0&&f[i].denominator>0){
+            count++;
+        }
+    }
+    cout << count << endl;
+}
+
+void ex635(Fraction f[], int n){
+    int count = 0;
+
+    for(int i = 0; i < n; i++) {
+        if(f[i].numerator<0&&f[i].denominator<0){
+            count++;
+        }
+    }
+    cout << count << endl;
 }
 
 
