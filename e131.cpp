@@ -3797,7 +3797,7 @@ void ex637(Fraction f[], int n){
 
 int main()
 {
-    // het 647
+    // het 637
     // TINH ti;
     // ti.input();
     // ti.output();
