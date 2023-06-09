@@ -2891,6 +2891,194 @@ void ex481output(Date da){
     cout << "Date" << da.day << "/" << da.month  << "/" << da.year << endl ;
 }
 
+void ex596(){
+    int year;
+    cin >> year;
+    if(year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+        cout << "Leap year" << endl;
+    }
+    else {
+        cout << "Not leap year"
+    }
+}
+
+int getDate(int month, int year){
+    switch(month){
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+        return 31;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+        return 30;
+        case 2:
+            if(year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+            return 29;
+            }
+            else {
+            return 28;
+            }
+    }
+}
+
+int getDayPerYear(int year) {
+    if(year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+        return 366;
+    }
+    else {
+        return 365;
+    }
+}
+
+void ex597(){
+    Date date;
+    ex481input(date);
+    int total = 0;
+    for(int i = 1; i < date.month ; i++) {
+        total += getDate(i, date.year);
+    }
+    total += date.day;
+}
+
+void ex598(){
+    Date date;
+    ex481input(date);
+    int total = 0;
+    for(int i = 1; i < date.year; i++) {
+        total += getDayPerYear(i);
+    }
+    for(int i = 1; i < date.month; i++) {
+        total += getDate(i, date.year);
+    }
+    total += date.day;
+}
+
+void ex599(){
+    int year;
+    int id;
+    cin >> id >> year;
+    int month = 1;
+    while(id > getDate(month)) {
+        id -= getDate(month++);
+    }
+    cout << id << endl;
+}
+
+void ex600(){
+    int id;
+    cin >> id;
+    int year = 1;
+    int month = 1;
+    while(id>getDayPerYear(year)){
+        id -= getDayPerYear(year);
+        year++;
+    }
+    while(id>getDate(month)){
+        id -= getDate(month);
+        month++;
+    }
+    cout << id << endl;
+}
+
+void ex601(){
+    Date date;
+    ex481input(date);
+    date.day++;
+    if(date.day>getDate(date.month, date.year)){
+        date.month++;
+        date.day = 1;
+        if(date.month>12){
+            date.year++;
+            date.month = 1;
+        }
+    }
+    cout << date.day;
+}
+
+void ex603(){
+    Date date;
+    ex481input(date);
+    int k;
+    cin >> k;
+    date.day+=k;
+    while(date.day > getDate(date.month, date.year
+    )){
+        if(date.day>getDate(date.month, date.year)){
+            date.day -= getDate(date.month, date.year);
+            date.month++;
+            if(date.month>12){
+                date.year++;
+                date.month = 1;
+            }
+        }
+    }
+    cout << date.day;
+}
+
+void ex604(){
+    Date date;
+    ex481input(date);
+    int k;
+    cin >> k;
+    date.day -= k;
+    while(date.day > getDate(date.month, date.year
+    )){
+        if(date.day>getDate(date.month, date.year)){
+            date.day -= getDate(date.month, date.year);
+            date.month--;
+            if(date.month<1){
+                date.year--;
+                date.month = 12;
+            }
+        }
+    }
+    cout << date.day;
+}
+
+
+void ex602(){
+    Date date;
+    ex481input(date);
+    date.day--;
+    if(date.day<1){
+        date.month--;
+        date.day = getDate(date.month, date.year);
+        if(date.month<1){
+            date.year--;
+            date.month = 12;
+        }
+    }
+    cout << date.day;
+}
+
+void ex605(Date date1, Date date2){
+    int day1 = ex597(date1);
+    int day2 = ex597(date2);
+   
+    int difference = abs(day2 - day1);
+    cout << difference << endl;
+}
+
+void ex606(Date date1, Date date2){
+    int day1 = ex597(date1);
+    int day2 = ex597(date2);
+    
+    if(day2 > day1){
+        cout << "Ngay 2 lon hon ngay 1";
+    }else if(day2<day1){
+        cout << "Ngay 2 nho hon ngay 1";
+    }else{
+        cout << "Ngay 2 bang ngay 1"
+    }
+}
+
+
 struct Polynomial {
     char variable;
     int size = 0;
@@ -3372,6 +3560,8 @@ void ex625(Point a[], int n){
         }
     }
 }
+ 
+//626 tinh binh phuong x,y
 
 
 
