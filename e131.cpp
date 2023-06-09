@@ -3716,16 +3716,39 @@ void ex635(Fraction f[], int n){
     cout << count << endl;
 }
 
+bool compareFractionMax(Fraction f1, Fraction f2){
+    return f1.numerator * f2.denominator > f2.numerator * f1.denominator;
+}
 
+bool compareFractionMin(Fraction f1, Fraction f2){
+    return f1.numerator * f2.denominator < f2.numerator * f1.denominator;
+}
 
+void ex636(Fraction f[], int n){
+    for(int i = 0; i < n; i++) {
+        cin >> f[i].numerator >> f[i].denominator;
+        int findGCD = gcd(f[i].numerator, f[i].denominator);
+        f[i].numerator /= findGCD;
+        f[i].denominator /= findGCD;
+        sort(f, f + n, compareFractionMax);
+    }
+    cout << f[0].numerator << "/" << f[0].denominator << endl;
+}
 
+void ex637(Fraction f[], int n){
+    for(int i = 0; i < n; i++) {
+        cin >> f[i].numerator >> f[i].denominator;
+        int findGCD = gcd(f[i].numerator, f[i].denominator);
+        f[i].numerator /= findGCD;
+        f[i].denominator /= findGCD;
+        sort(f, f + n, compareFractionMin);
+    }
+    cout << f[0].numerator << "/" << f[0].denominator << endl;
+}
 
-// 489
 int main()
 {
-    // het 589
-    //486
-    // 607 - 624
+    // het 647
     // TINH ti;
     // ti.input();
     // ti.output();
