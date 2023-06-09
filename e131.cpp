@@ -2779,10 +2779,39 @@ struct TriangleHasP{
     }
 };
 
+
 void ex590(TriangleHasP tri){
     tri.input();
     int distance = findDistance(tri.P, tri.A) + findDistance(tri.P, tri.B) + findDistance(tri.P, tri.C);
     cout << "Total: " << distance << endl;
+}
+
+double area(Point A, Point B, Point C) {
+    double a = sqrt(pow(B.x - C.x, 2) + pow(B.y - C.y, 2));
+    double b = sqrt(pow(A.x - C.x, 2) + pow(A.y - C.y, 2));
+    double c = sqrt(pow(A.x - B.x, 2) + pow(A.y - B.y, 2));
+    double p = (a + b + c) / 2;
+    return sqrt(p * (p - a) * (p - b) * (p - c));
+}
+
+bool isInsideTriangle(Point A, Point B, Point C, Point P) {
+    double ABC = area(A, B, C);
+    double ABP = area(A, B, P);
+    double APC = area(A, P, C);
+    double PBC = area(P, B, C);
+    return (ABC == ABP + APC + PBC);
+}
+
+void ex591(Point A, Point B, Point B, Point D){
+    cin >> A.x >> A.y;
+    cin >> B.x >> B.y;
+    cin >> C.x >> C.y;
+    cin >> P.x >> P.y;
+    if (isInsideTriangle(A, B, C, P)) {
+        cout << "Diem P nam trong tam giac ABC.";
+    } else {
+        cout << "Diem P khong nam trong tam giac ABC.";
+    }
 }
 
 void ex478input(Coordinatexyz &co){
