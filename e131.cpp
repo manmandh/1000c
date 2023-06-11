@@ -3307,6 +3307,43 @@ struct TINH {
     }
 };
 
+void ex667(TINH t[], int n){
+    //cau a
+    for(int i = 0; i < n; i++) {
+        cout << "Enter infor city: " << i + 1 << ":" << endl;
+        t[i].input();
+    }
+    //cau b
+    cout << "City has population > 1 milion" << endl;
+    for(int i = 0; i < n; i++) {
+        if(t[i].population > 1000000){
+            t[i].output();
+        }
+    }
+    //cau c
+    TINH maxArea = t[0];
+    for(int i = 1; i < n; i++) {
+        if(t[i].area > maxArea.area){
+            maxArea = t[i];
+        }
+    }
+    cout << "City largest area: " << endl;
+    maxArea.output();
+    //cau d
+    for(int i = 0; i < n-1; i++) {
+        for(int j = 0; j < n-1-i; j++) {
+            if(t[i].area < t[i+1].area){
+                swap(t[i], t[i + 1]);
+            }
+        }
+    }
+
+    cout << "City sort descending area: " << endl;
+    for(int i = 0; i < n; i++){
+        t[i].output();
+    }
+}
+
 struct HOPSUA{
     string branch;
     double weight;
@@ -3323,6 +3360,42 @@ struct HOPSUA{
         ex481output(date);
     }
 };
+
+void ex668(HOPSUA milk[], int n){
+    //cau a
+    for(int i = 0; i < n; i++) {
+        cout << "Enter infor box milk: " << i + 1 << ":" << endl;
+        milk[i].input();
+    }
+    //cau b
+    for(int i = 0; i < n; i++) {
+        cout << "Print milk" << endl;
+        milk[i].output();
+    }
+    //cau c
+    int x;
+    cout << "Enter day x: " << endl;
+    cin >> x;
+    int count = 0;
+    for(int i = 0; i < n; i++) {
+        if(milk[i].date.day > x){
+            count++;
+        }
+    }
+    cout << count << endl;
+
+    //cau d
+    HOPSUA maxWeight = milk[INT_MIN];
+    for(int i = 0; i < n; i++) {
+        if(milk[i].weight > maxWeight.weight) {
+            maxWeight = milk[i];
+        }
+    }
+    cout << "Max box milk: " << endl;
+    maxWeight.output();
+}
+
+
 struct Time{
     int hour;
     int minute;
@@ -3339,8 +3412,9 @@ struct Time{
         cout << minute;
         cout << second;
     }
-
 };
+
+
 struct VE{
     string name;
     int price;
@@ -3357,6 +3431,8 @@ struct VE{
         time.output();
     }
 };
+
+
 
 struct MATHANG{
     string name;
@@ -3506,7 +3582,7 @@ struct HOCSINH{
     }
 };
 
-struct  LOPHOC{
+struct LOPHOC{
     string nameOfClass;
     int id;
     string nameOfStudent[50];
@@ -3793,6 +3869,230 @@ void ex637(Fraction f[], int n){
         sort(f, f + n, compareFractionMin);
     }
     cout << f[0].numerator << "/" << f[0].denominator << endl;
+}
+
+void ex638(Fraction f[], int n) {
+    // input array
+    for(int i = 0; i < n; i++) {
+        cin >> f[i].numerator >> f[i].denominator;
+    }
+
+    // find max
+    double maxElement = f[0].numerator * 1.0 / f[0].denominator;
+    for(int i = 0; i < n; i++) {
+        double temp = f[i].numerator * 1.0 / f[i].denominator;
+        if(temp > maxElement)
+            maxElement = temp;
+    }
+    cout << maxElement << endl;
+}
+
+void ex639(Fraction f[], int n){
+    for(int i = 0; i < n; i++) {
+        cin >> f[i].numerator >> f[i].denominator;
+    }
+
+    bool check = false;
+    for(int i=0; i<n; i++){
+        if(f[i].numerator*f[i].denominator>0){
+            cout << f[i].numerator << "/" << f[i].denominator;
+            check = true;
+            break;
+        }
+    }
+    if(!check) cout << "0/1" << endl;
+}
+
+void ex640(Fraction f[], int n){
+    for(int i = 0; i < n; i++) {
+        cin >> f[i].numerator >> f[i].denominator;
+    }
+    bool check = false;
+   
+    double minElement = f[0].numerator * 1.0 / f[0].denominator;
+    int pos=0;
+    for(int i=0; i<n ; i++){
+            double temp = f[i].numerator * 1.0 / f[i].denominator;
+            if(minElement > temp ){
+                minElement = temp;
+                pos=i;
+            }
+    }
+    if(check){
+        cout <<"Pos min of fraction is: " << pos;
+    }else{
+        cout << "-1";
+    }
+}
+
+void ex641(Fraction f[], int n){
+    for(int i = 0; i < n; i++) {
+        cin >> f[i].numerator >> f[i].denominator;
+    }
+    bool check = false;
+   
+    double minElement = f[0].numerator * 1.0 / f[0].denominator;
+    for(int i=0; i<n ; i++){
+        if(f[i].numerator*f[i].denominator>0){
+            check = true;
+            double temp = f[i].numerator * 1.0 / f[i].denominator;
+            if(minElement > temp ){
+                minElement = temp;
+            }
+        }
+    }
+    if(check){
+        cout <<"Value > 0 min of fraction is: " << minElement;
+    }else{
+        cout << "-1";
+    }
+}
+
+void ex642(Fraction f[], int n){
+    for(int i = 0; i < n; i++) {
+        cin >> f[i].numerator >> f[i].denominator;
+    }
+    bool check = false;
+   
+    double minElement = f[0].numerator * 1.0 / f[0].denominator;
+    int pos=0;
+    for(int i=0; i<n ; i++){
+        if(f[i].numerator*f[i].denominator>0){
+            check = true;
+            double temp = f[i].numerator * 1.0 / f[i].denominator;
+            if(minElement > temp ){
+                minElement = temp;
+                pos=i;
+            }
+        }
+    }
+    if(check){
+        cout <<"Pos > 0 min of fraction is: " << pos;
+    }else{
+        cout << "-1";
+    }
+}
+
+void ex643(Fraction f[], int n) {
+    for(int i = 0; i < n; i++) {
+        cin >> f[i].numerator >> f[i].denominator;
+    }
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            double value1 = f[j].numerator / f[j0].denominator;
+            double value2 = f[j + 1].numerator / f[j + 1].denominator;
+            if (value1 > value2) {
+                Fraction temp = f[j];
+                f[j] = f[j + 1];
+                f[j + 1] = temp;
+            }
+        }
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << f[i].numerator << "/" << f[i].denominator;
+    }
+}
+
+void ex644(Fraction f[], int n) {
+    for(int i = 0; i < n; i++) {
+        cin >> f[i].numerator >> f[i].denominator;
+    }
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            double value1 = f[j].numerator / f[j].denominator;
+            double value2 = f[j + 1].numerator / f[j + 1].denominator;
+            if (value1 < value2) {
+                Fraction temp = f[j];
+                f[j] = f[j + 1];
+                f[j + 1] = temp;
+            }
+        }
+    } 
+
+    for(int i = 0; i < n; i++) {
+        cout << f[i].numerator << "/" << f[i].denominator;
+    }
+}
+
+void ex645(ComplexNumber c[], int n){
+    for(int i = 0; i < n; i++) {
+        cin >> c[i].a >> c[i].b;
+    }
+}
+
+void ex646(ComplexNumber c[], int n){
+    for(int i = 0; i < n; i++) {
+        cout << c[i].a << "+" << c[i].b << "i";
+    }
+}
+
+void ex647(ComplexNumber c[], int n){
+    ComplexNumber result;
+    result.a = 0;
+    result.b = 0;
+    for(int i = 0; i < n; i++) {
+        result.a += c[i].a;
+        result.b += c[i].b;
+    }
+    cout << result.a << "+" << result.b << "i";
+}
+
+//(a+bi)(c+di)=(ac-bd)+(ad+bc)i
+void ex648(ComplexNumber c[], int n){
+    for(int i = 0; i < n; i++) {
+        cin >> c[i].a >> c[i].b;
+    }
+    ComplexNumber result;
+    result.a = 1;
+    result.b = 1;
+
+    for(int i = 0; i < n; i++) {
+        result.a = result.a * c[i].a - result.a * c[i].b;
+        result.b = result.a * c[i].b + c[i].a * result.b;
+    }
+    cout << result.a << "+" << result.b << "i";
+}
+
+void ex649(ComplexNumber c[], int n){
+    for(int i = 0; i < n; i++) {
+        cin >> c[i].a >> c[i].b;
+    }
+
+    ComplexNumber result;
+    result.a = 0;
+    result.b = 0;
+
+    for(int i = 0; i < n; i++) {
+        if(c[i].a > 0 && c[i].b > 0){
+            cout << c[i].a << " + " << c[i].b << endl;
+            break;
+        }
+    }
+    
+    cout << result.a << "+" << result.b << "i";
+}
+
+bool compareReal(ComplexNumber c1, ComplexNumber c2){
+    return c1.a < c2.a;
+}
+
+void ex650(ComplexNumber c[], int n){
+    for(int i = 0; i < n; i++) {
+        cin >> c[i].a >> c[i].b;
+    }
+
+    sort(c1, c2, compareReal);
+
+    ComplexNumber result;
+    result.a = 0;
+    result.b = 0;
+     
+    for(int i = 0; i < n; i++) {
+        cout << c[i].a << "+" << c[i].b << endl;
+    }
+
+    cout << result.a << "+" << result.b << "i";
 }
 
 int main()
